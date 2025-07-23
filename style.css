@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 100%;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    background-image: url("./img/BASLIK2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    padding: 15px 10px 60px 10px;
+    position: relative;
+}
+.logo-image{
+height: 80px;
+    width: 80px;
+    object-fit: cover;    
+}
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;justify-content: space-around;
+    position: relative;
+    color: white;
+}
+
+.fork-knife {
+    position: absolute;
+    font-size: 20px;
+    transform: rotate(-45deg);
+}
+
+.fork-left {
+    top: 5px;
+    left: 5px;
+}
+
+.fork-right {
+    top: 5px;
+    right: 5px;
+    transform: rotate(45deg);
+}
+
+.logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+.logo-divider {
+    width: 50px;
+    height: 1px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+.logo-subtext {
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.restaurant-name {
+    position: relative;
+    color: white;
+}
+
+.k-letter {
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+    font-weight: 700;
+    display: inline-block;
+    margin-right: -15px;
+}
+
+.name-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 45px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.tagline {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    font-style: italic;
+}
+/* Menu Content */
+.menu-content {
+    padding: 20px;
+    background-color: white;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* Menu Items */
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    background-color: #f8f8f8;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.item-image {
+    width: 50px;
+    height: 50px;
+    border:1px solid;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: 6px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+/* Placeholder images - gerçek resimlerle değiştirilecek */
+.pide-1 { background-image: url("./img/kıymalıpide.png"); }
+.pide-2 { background-image: url("./img/peynirlipide.jpg"); }
+.pide-3 { background-image: url("./img/kuşbaşılıpide.jpg"); }
+.pide-4 { background-image: url("./img/pastırmalıpide.jpeg"); }
+.pide-5 { background-image: url("./img/sucuklupide.jpg"); }
+.pide-6 { background-image: url("./img/kavurmalipide_1.jpg"); }
+.pide-7 { background-image: url("./img/kaşarlı\ pide.jpg"); }
+.pide-8 { background-image: url("./img/karisikpide-min.jpg"); }
+
+.et-1 { background-image: url("./img/kuzupirzola.jpg"); }
+.et-2 { background-image: url("./img/köfte.jpg");  }
+.et-3 { background-image: url("./img/tavukpirzola.jpg");  }
+.et-4 { background-image: url("./img/kuzukanat.jpg");  }
+.et-5 { background-image: url("./img/kuzutandır.jpg");  }
+.et-6 { background-image: url("./img/kofteekmek.jpg");  }
+.et-7 { background-image: url("./img/lahmacun.jpg");  }
+
+.corba-1 { background-image: url("./img/kellepaca.png");  }
+.corba-2 { background-image: url("./img/mercimek.jpg");  }
+
+.salata-1 { background-image: url("./img/mevsimsalata.jpg");  }
+.salata-2 { background-image: url("./img/cobansalata.jpg");  }
+
+.icecek-1 { background-image: url("./img/siseicecek.png");  }
+.icecek-2 { background-image: url("./img/kutuiçeçek.jpg");  }
+.icecek-3 { background-image: url("./img/litre.png");  }
+.icecek-4 { background-image: url("./img/ayran.jpg");  }
+.icecek-5 { background-image: url("./img/su.jpg");  }
+
+.item-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 69px;
+    border-radius: 10px;
+    background-color: rgba(194,14,26,255);
+}
+
+.item-name {
+    background-color: rgba(194,14,26,255);
+    color: white;
+    padding: 8px 15px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.price-box {
+width: 63px;
+    height: 69px;
+    border: 1px solid #C40A1E;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding-top: 23px;
+}
+
+.price-box:focus {
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Bottom Sections */
+.bottom-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.left-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.small-section .menu-items {
+    gap: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .logo-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .k-letter {
+        font-size: 50px;
+    }
+
+    .name-text {
+        font-size: 35px;
+    }
+
+    .tagline {
+        position: static;
+        margin-top: -10px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .bottom-sections {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .menu-item {
+        border-radius: 20px;
+    }
+
+    .item-name {
+        font-size: 20px;
+        padding: 6px 12px;
+    }
+
+    .price-input {
+        width: 70px;
+        height: 30px;
+        font-size: 14px;
+    }
+        .item-image {
+        width: 100px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 250px;
+        padding: 10px 15px;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .k-letter {
+        font-size: 40px;
+    }
+
+    .name-text {
+        font-size: 28px;
+    }
+
+    .menu-content {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .item-name {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+
+    .price-input {
+        width: 60px;
+        font-size: 18px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header {
+        background-color: #c8232c !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .item-name {
+        background-color: #c8232c !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.menu-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}

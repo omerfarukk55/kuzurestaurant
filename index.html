@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuzu Restaurant - Menü</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Paneli için Modal -->
+    <div id="adminModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:10px; min-width:320px; max-width:90vw; max-height:80vh; overflow-y:auto;">
+            <!-- Giriş Ekranı -->
+            <div id="adminLogin">
+                <h2>Admin Girişi</h2>
+                <input type="password" id="adminPass" placeholder="Şifre giriniz" style="padding:10px; width:100%; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;">
+                <button onclick="checkAdmin()" style="padding:10px 20px; background:#d4af37; color:white; border:none; border-radius:5px; cursor:pointer; width:100%;">Giriş Yap</button>
+                <div id="loginError" style="color:red; margin-top:10px; text-align:center;"></div>
+            </div>
+            
+            <!-- Admin Panel -->
+            <div id="adminPanel" style="display:none;">
+                <h2>Fiyat Güncelleme Paneli</h2>
+                <div id="priceForm" style="max-height:400px; overflow-y:auto;"></div>
+                <div style="margin-top:20px; text-align:center;">
+                    <button onclick="savePrices()" style="padding:10px 20px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer; margin-right:10px;">Kaydet</button>
+                    <button onclick="closeAdmin()" style="padding:10px 20px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer;">Kapat</button>
+                </div>
+                <div id="saveMsg" style="color:green; margin-top:10px; text-align:center;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Butonu (sağ alt köşe) -->
+    <button onclick="openAdmin()" style="position:fixed; bottom:20px; right:20px; padding:10px; background:#d4af37; color:white; border:none; border-radius:50%; cursor:pointer; width:60px; height:60px; font-size:20px; z-index:1000;">⚙️</button>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-wrapper">
+                <div class="logo-circle">
+                   <img src="./img/kuzulogo.png" alt="Kuzu Restaurant Logo" class="logo-image">
+                </div>
+                <div class="restaurant-name">
+                    <img src="./img/kuzubaslık.png" alt="Kuzu Restaurant" class="restaurant-logo" style="height: 80px;">
+                </div>
+            </div>
+        </header>
+
+        <!-- Torn Paper Effect -->
+        <div class="torn-paper"></div>
+
+        <!-- Menu Content -->
+        <main class="menu-content">
+            <div class="menu-grid">
+                <!-- Pide Çeşitleri -->
+                <section class="menu-section">
+                    <h2 class="section-title">PİDE ÇEŞİTLERİ</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image pide-1"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kıymalı Pide</span>
+                                 <span class="price-box">200</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-2"></div>
+                            <div class="item-details">
+                                <span class="item-name">Peynirli Pide</span>
+                                <span class="price-box">200</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-3"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kuşbaşılı Pide</span>
+                                <span class="price-box">300</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-4"></div>
+                            <div class="item-details">
+                                <span class="item-name">Pastırmalı Pide</span>
+                                <span class="price-box">300</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-5"></div>
+                            <div class="item-details">
+                                <span class="item-name">Sucuklu Pide</span>
+                                <span class="price-box">250</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-6"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kavurmalı Pide</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-7"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kaşarlı Pide</span>
+                                <span class="price-box">200</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image pide-8"></div>
+                            <div class="item-details">
+                                <span class="item-name">Karışık Pide</span>
+                                <span class="price-box">350</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Et Çeşitleri -->
+                <section class="menu-section">
+                    <h2 class="section-title">ET ÇEŞİTLERİ</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image et-1"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kuzu Pirzola</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-2"></div>
+                            <div class="item-details">
+                                <span class="item-name">Köfte</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-3"></div>
+                            <div class="item-details">
+                                <span class="item-name">Tavuk Pirzola</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-4"></div>
+                            <div class="item-details">
+                                <span class="item-name">Tavuk Kanat</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-5"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kuzu Tandır</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-6"></div>
+                            <div class="item-details">
+                                <span class="item-name">Köfte Ekmek</span>
+                                <span class="price-box">--</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image et-7"></div>
+                            <div class="item-details">
+                                <span class="item-name">Lahmacun</span>
+                                <span class="price-box">80</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Alt Bölümler -->
+            <div class="bottom-sections">
+                <!-- Sol Taraf -->
+                <div class="left-sections">
+                    <!-- Çorba Çeşitleri -->
+                    <section class="menu-section small-section">
+                        <h2 class="section-title">ÇORBA ÇEŞİTLERİ</h2>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-image corba-1"></div>
+                                <div class="item-details">
+                                    <span class="item-name">Kelle Paça Çorba</span>
+                                    <span class="price-box">150</span>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-image corba-2"></div>
+                                <div class="item-details">
+                                    <span class="item-name">Mercimek Çorba</span>
+                                    <span class="price-box">80</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Salata Çeşitleri -->
+                    <section class="menu-section small-section">
+                        <h2 class="section-title">SALATA ÇEŞİTLERİ</h2>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-image salata-1"></div>
+                                <div class="item-details">
+                                    <span class="item-name">Mevsim Salata</span>
+                                    <span class="price-box">--</span>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-image salata-2"></div>
+                                <div class="item-details">
+                                    <span class="item-name">Çoban Salata</span>
+                                    <span class="price-box">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- İçecek Çeşitleri -->
+                <section class="menu-section small-section right-section">
+                    <h2 class="section-title">İÇECEK ÇEŞİTLERİ</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image icecek-1"></div>
+                            <div class="item-details">
+                                <span class="item-name">Şişe İçecekler</span>
+                                <span class="price-box">40</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image icecek-2"></div>
+                            <div class="item-details">
+                                <span class="item-name">Kutu İçecekler</span>
+                                <span class="price-box">50</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image icecek-3"></div>
+                            <div class="item-details">
+                                <span class="item-name">Litre İçecekler</span>
+                                <span class="price-box">75</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image icecek-4"></div>
+                            <div class="item-details">
+                                <span class="item-name">Ayran</span>
+                                <span class="price-box">30</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image icecek-5"></div>
+                            <div class="item-details">
+                                <span class="item-name">Su</span>
+                                <span class="price-box">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+<script>
+// Sayfa yüklendiğinde fiyatları localStorage'dan yükle
+window.addEventListener('DOMContentLoaded', function() {
+    loadPrices();
+});
+
+// Fiyatları localStorage'dan yükle
+function loadPrices() {
+    const savedPrices = JSON.parse(localStorage.getItem('kuzuMenuPrices') || '{}');
+    document.querySelectorAll('.menu-item').forEach(function(item) {
+        const productName = item.querySelector('.item-name').textContent.trim();
+        const priceBox = item.querySelector('.price-box');
+        if (savedPrices[productName]) {
+            priceBox.textContent = savedPrices[productName];
+        }
+    });
+}
+
+// Admin panelini aç
+function openAdmin() {
+    document.getElementById('adminModal').style.display = 'flex';
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminPass').value = '';
+    document.getElementById('loginError').textContent = '';
+    document.getElementById('saveMsg').textContent = '';
+}
+
+// Admin panelini kapat
+function closeAdmin() {
+    document.getElementById('adminModal').style.display = 'none';
+}
+
+// Şifre kontrolü
+function checkAdmin() {
+    const password = document.getElementById('adminPass').value;
+    if (password === 'kuzu123') {
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        createPriceForm();
+    } else {
+        document.getElementById('loginError').textContent = 'Hatalı şifre! Tekrar deneyin.';
+        document.getElementById('adminPass').value = '';
+    }
+}
+
+// Fiyat güncelleme formunu oluştur
+function createPriceForm() {
+    const savedPrices = JSON.parse(localStorage.getItem('kuzuMenuPrices') || '{}');
+    let formHTML = '';
+    let itemIndex = 0;
+    
+    // Her section'ı işle
+    document.querySelectorAll('.menu-section').forEach(function(section) {
+        const sectionTitle = section.querySelector('.section-title').textContent.trim();
+        const items = section.querySelectorAll('.menu-item');
+        
+        if (items.length > 0) {
+            // Kategori başlığını ekle
+            formHTML += `<h3 style="color: #d4af37; border-bottom: 2px solid #d4af37; padding-bottom: 5px; margin: 20px 0 10px 0;">${sectionTitle}</h3>`;
+            
+            // Bu kategorideki ürünleri ekle
+            items.forEach(function(item) {
+                const productName = item.querySelector('.item-name').textContent.trim();
+                let currentPrice = item.querySelector('.price-box').textContent.trim();
+                
+                // -- değerleri için özel durum
+                if (currentPrice === '--' || currentPrice === '') {
+                    currentPrice = '0';
+                }
+                
+                const savedPrice = savedPrices[productName] || currentPrice;
+                
+                formHTML += `
+                    <div style="margin-bottom: 10px; padding: 8px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                        <label style="font-weight: bold; flex: 1;">${productName}:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="number" 
+                                   id="price_${itemIndex}" 
+                                   value="${savedPrice}" 
+                                   min="0" 
+                                   step="1"
+                                   placeholder="Fiyat girin"
+                                   style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 3px; margin-right: 5px;"
+                                   data-product="${productName}">
+                            <span>TL</span>
+                        </div>
+                    </div>
+                `;
+                itemIndex++;
+            });
+        }
+    });
+    
+    document.getElementById('priceForm').innerHTML = formHTML;
+}
+
+// Fiyatları kaydet
+function savePrices() {
+    const prices = {};
+    const inputs = document.querySelectorAll('#priceForm input[type="number"]');
+    
+    inputs.forEach(function(input) {
+        const productName = input.getAttribute('data-product');
+        const newPrice = input.value;
+        
+        // Eğer fiyat girilmemişse veya 0 ise -- olarak göster
+        if (newPrice === '' || newPrice === '0') {
+            prices[productName] = '--';
+        } else {
+            prices[productName] = newPrice;
+        }
+    });
+    
+        // LocalStorage'a kaydet
+    localStorage.setItem('kuzuMenuPrices', JSON.stringify(prices));
+    
+    // Sayfadaki fiyatları güncelle
+    document.querySelectorAll('.menu-item').forEach(function(item) {
+        const productName = item.querySelector('.item-name').textContent.trim();
+        const priceBox = item.querySelector('.price-box');
+        if (prices[productName]) {
+            priceBox.textContent = prices[productName];
+        }
+    });
+    
+    // Başarı mesajı göster
+    document.getElementById('saveMsg').textContent = 'Fiyatlar başarıyla güncellendi!';
+    
+    // 2 saniye sonra mesajı temizle
+    setTimeout(function() {
+        document.getElementById('saveMsg').textContent = '';
+    }, 2000);
+}
+
+// Enter tuşu ile giriş yapabilmek için
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && document.getElementById('adminPass') === document.activeElement) {
+        checkAdmin();
+    }
+});
+
+// Modal dışına tıklayınca kapatmak için
+document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeAdmin();
+    }
+});
+</script>
+
+</body>
+</html>
