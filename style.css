@@ -386,3 +386,14 @@ width: 63px;
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+.footer {
+    background-color: #c8232c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
